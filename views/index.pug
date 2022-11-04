@@ -1,0 +1,20 @@
+extends layout
+
+block content
+  h1= title
+  p My name is Nithish
+  button(type="button", class="btn btn-primary" onclick="doBump()") Press Me 
+  br
+  div#bump 
+    p Bump the count
+  a(href="/oreo") Oreo 
+  script.
+    var count=0;
+    var bump=1;
+
+    function doBump(){
+      count+=bump;
+      bump+=1;
+      document.getElementById('bump').innerText="Count "+count+" Bump "+bump;
+    }
+  

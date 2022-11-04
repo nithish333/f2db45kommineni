@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h1= title
+  p Nitish's #{title}
+  - var image_names = ["choc.jpg","mint.jpg","pump.jpg","straw.jpg","vanilla.jpg"]
+  - var i =0;
+  - while(i<3){
+     - var index = Math.floor(Math.random()*5)
+     - img = "/images/"+image_names[index]
+     - i++
+     img(src=img,  height="300px",width="300px",alt="alt")     
+  -}
