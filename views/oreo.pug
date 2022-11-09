@@ -2,41 +2,12 @@ extends layout
 
 block content
   h1= title
-  -
-   let results =[
-      {
-        "Flavour": "Vanilla",
-        "ManufactureLocation": "Texas",
-        "NetWeight": 53
-      },
-      {
-        "Flavour": "Chocolate",
-        "ManufactureLocation": "Karagpur",
-        "NetWeight": 100
-      },
-      {
-        "Flavour": "Strawberry",
-        "ManufactureLocation": "Hyderabad",
-        "NetWeight": 34
-      },
-      {
-        "Flavour": "Watermelon",
-        "ManufactureLocation": "Kansas",
-        "NetWeight": 54
-      },
-      {
-        "Flavour": "Mint",
-        "ManufactureLocation": "Newyork",
-        "NetWeight": 120
-      }
-    ]
 
   .container-fluid 
     .row 
-      each bis in results
-        div(class="col-sm-2" onclick=`buy(${results.indexOf(bis)})`) 
-          each value,key in bis 
-            = " " +value
+      each bis,key in results
+        div(class="col-sm-2" onclick=`buy(${keys})`) 
+            = " " +bis.flavour +  " "+bis.manufacturerlocation+" "+bis.netweight
   script.
     function buy(index){
       alert("You purchased item "+index)
