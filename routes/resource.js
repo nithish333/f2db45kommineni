@@ -26,6 +26,7 @@ router.get('/oreos/:id', oreo_controller.oreo_detail);
  
 // GET request for list of all oreo items. 
 router.get('/oreos', oreo_controller.oreo_list); 
+
  
 module.exports = router; 
  

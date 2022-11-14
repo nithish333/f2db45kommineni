@@ -1,0 +1,23 @@
+
+extends layout 
+ 
+block content 
+  h1= title 
+ 
+  - let id = toShow._id 
+  - let flavour = toShow.flavour
+  - let manufacturerlocation = toShow.manufacturerlocation
+  - let netweight = toShow.netweight
+  div 
+    div.row 
+      div(class='costumeAttr mr-3') Oreo ID is: 
+      div #{id} 
+    div.row 
+      div(class='costumeAttr mr-3') Oreo Flavour is: 
+      div #{flavour} 
+    div.row 
+      div(class='costumeAttr mr-3') Oreo Manufacturer Location is: 
+      div #{manufacturerlocation} 
+    div.row 
+      div(class='costumeAttr mr-3') Oreo Netweight is: 
+      div #{netweight} 

@@ -48,8 +48,16 @@ exports.oreo_create_post = async function(req, res) {
 
  
 // Handle oreo delete form on DELETE. 
-exports.oreo_delete = function(req, res) { 
-    res.send('NOT IMPLEMENTED: oreo delete DELETE ' + req.params.id); 
+exports.oreo_delete = async function(req, res) { 
+    console.log("delete "  + req.params.id) 
+    try { 
+        result = await Oreo.findByIdAndDelete( req.params.id) 
+        console.log("Removed " + result) 
+        res.send(result) 
+    } catch (err) { 
+        res.status(500) 
+        res.send(`{"error": Error deleting ${err}}`); 
+    } 
 }; 
  
 // Handle oreo update form on PUT. 
@@ -84,3 +92,50 @@ exports.oreo_view_all_Page = async function(req, res) {
     }   
 }; 
  
+exports.oreo_view_one_Page = async function(req, res) { 
+    console.log("single view for id "  + req.query.id) 
+    try{ 
+        result = await Oreo.findById( req.query.id) 
+        res.render('oreodetail',{ title: 'Oreo Detail', toShow: result }); 
+    } 
+    catch(err){ 
+        res.status(500) 
+        res.send(`{'error': '${err}'}`); 
+    } 
+}; 
+
+exports.oreo_create_Page =  function(req, res) { 
+    console.log("create view") 
+    try{ 
+        res.render('oreocreate', { title: 'Oreo Create'}); 
+    } 
+    catch(err){ 
+        res.status(500) 
+        res.send(`{'error': '${err}'}`); 
+    } 
+}; 
+
+exports.oreo_update_Page =  async function(req, res) { 
+    console.log("update view for item "+req.query.id) 
+    try{ 
+        let result = await Oreo.findById(req.query.id) 
+        res.render('oreoupdate', { title: 'Oreo Update', toShow: result }); 
+    } 
+    catch(err){ 
+        res.status(500) 
+        res.send(`{'error': '${err}'}`);    
+    } 
+}; 
+
+exports.oreo_delete_Page = async function(req, res) { 
+    console.log("Delete view for id "  + req.query.id) 
+    try{ 
+        result = await Oreo.findById(req.query.id) 
+        res.render('oreodelete', { title: 'Oreo Delete', toShow: 
+result }); 
+    } 
+    catch(err){ 
+        res.status(500) 
+        res.send(`{'error': '${err}'}`); 
+    } 
+}; 
