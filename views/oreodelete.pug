@@ -1,23 +1,53 @@
-
 extends layout 
  
 block content 
   h1= title 
  
-  - let id = toShow._id 
-  - let flavour = toShow.flavour
-  - let manufacturerlocation = toShow.manufacturerlocation
-  - let netweight = toShow.netweight
-  div 
-    div.row 
-      div(class='costumeAttr mr-3') Oreo ID is: 
-      div #{id} 
-    div.row 
-      div(class='costumeAttr mr-3') Oreo Flavour is: 
-      div #{flavour} 
-    div.row 
-      div(class='costumeAttr mr-3') Oreo Manufacturer Location is: 
-      div #{manufacturerlocation} 
-    div.row 
-      div(class='costumeAttr mr-3') Oreo Netweight is: 
-      div #{netweight} 
+  if (toShow == null) 
+    h2 No instance to delete 
+  else 
+    - let id = toShow._id 
+    - let flavour = toShow.flavour 
+    - let manufacturerlocation = toShow.manufacturerlocation 
+    - let netweight = toShow.netweight 
+    - let actionid = "/resource/oreos/" + id 
+    script let actionid = "#{actionid}" 
+    div 
+      div.row 
+        div(class='costumeAttr mr-3') Oreo ID is: 
+        div #{id} 
+      div.row 
+        div(class='costumeAttr mr-3') Oreo flavour is: 
+        div #{flavour} 
+      div.row 
+        div(class='costumeAttr mr-3') Oreo netweight is: 
+        div #{netweight} 
+      div.row 
+        div(class='costumeAttr mr-3') Oreo manufacturer location is: 
+        div #{manufacturerlocation} 
+ 
+    button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete 
+    button(class="btn btn-secondary m-2" onclick="cancel()") Cancel 
+ 
+  script. 
+    function cancel() { 
+      // Go back to the home page for the costume collection 
+      window.location.href='/oreo' 
+    } 
+  script. 
+    function deleteOnid() { 
+      console.log("starting delete") 
+      // delete first 
+      fetch(actionid, { 
+        method: 'DELETE'     
+      }).then((resp) => { 
+        return resp.json(); // or resp.text() or whatever the server sends 
+      }).then((body) => { 
+        alert("Delete succeded") 
+        window.location.href='/oreo' 
+        // TODO handle body 
+      }).catch((error) => { 
+        // TODO handle error 
+        alert("Delete failed " + error ) 
+      }); 
+    } 

@@ -6,7 +6,7 @@ block content
   .container-fluid 
     .row 
       each bis,key in results
-        div(class="col-sm-2" onclick=`buy(${keys})`) 
+        div(class="col-sm-2 oreobox" onclick=`buy(${keys})`) 
             = " " +bis.flavour +  " "+bis.manufacturerlocation+" "+bis.netweight
   script.
     function buy(index){

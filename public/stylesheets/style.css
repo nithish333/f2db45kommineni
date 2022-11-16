@@ -10,3 +10,19 @@ a {
   background-color: aquamarine; 
   width: 120px; 
 } 
+
+.oreobox{
+  border:1px solid black;
+  margin: 10px;
+  padding:30px 30px 20px 30px;
+  color: white;
+}
+
+.oreobox:nth-child(odd){
+  background-color: blueviolet;
+}
+
+.oreobox:nth-child(even){
+  background-color:crimson;
+}
+

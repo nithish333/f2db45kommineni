@@ -3,7 +3,9 @@ extends layout
  
 block content 
   h1= title 
- 
+  if (toShow == null) 
+    h2 Nothing to show here 
+  else 
   - let id = toShow._id 
   - let flavour = toShow.flavour
   - let manufacturerlocation = toShow.manufacturerlocation
