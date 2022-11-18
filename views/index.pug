@@ -1,20 +1,12 @@
-extends layout
-
-block content
-  h1= title
-  p My name is Nithish
-  button(type="button", class="btn btn-primary" onclick="doBump()") Press Me 
-  br
-  div#bump 
-    p Bump the count
-  a(href="/oreo") Oreo 
-  script.
-    var count=0;
-    var bump=1;
-
-    function doBump(){
-      count+=bump;
-      bump+=1;
-      document.getElementById('bump').innerText="Count "+count+" Bump "+bump;
-    }
-  
+extends layout 
+ 
+block content 
+  if (!user) 
+    a(href="/login") Login 
+    br 
+    a(href="/register") Register 
+  if (user) 
+    p You are currently logged in as #{user.username} 
+    a(href="/oreo") Take me to oreo land
+    br 
+    a(href="/logout") Logout 

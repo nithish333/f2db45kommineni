@@ -6,9 +6,15 @@ block content
   .container-fluid 
     .row 
       each bis,key in results
+       - let destination = `dispatch(\"/update?id=${bis._id}\")`
         div(class="col-sm-2 oreobox" onclick=`buy(${keys})`) 
             = " " +bis.flavour +  " "+bis.manufacturerlocation+" "+bis.netweight
+        button.btn( class="btn-primary ml-1", onclick= destination) Update
+
   script.
     function buy(index){
       alert("You purchased item "+index)
+    }
+    function dispatch(path){
+      window.location.href=path
     }
