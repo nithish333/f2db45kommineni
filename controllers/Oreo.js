@@ -42,7 +42,7 @@ exports.oreo_create_post = async function(req, res) {
     } 
     catch(err){ 
         res.status(500); 
-        res.send(`{"error": ${err}}`); 
+        res.send(`{"error":" Saved failed please enter valid details"}`); 
     }   
 }; 
 
@@ -111,7 +111,7 @@ exports.oreo_create_Page =  function(req, res) {
     } 
     catch(err){ 
         res.status(500) 
-        res.send(`{'error': '${err}'}`); 
+        res.send(`{'error': "Enter all fields"}`); 
     } 
 }; 
 

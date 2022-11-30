@@ -7,6 +7,20 @@ var Oreo = require("./models/Oreo");
 var passport = require('passport');
 var Account = require("./models/Account")
 var LocalStrategy = require('passport-local').Strategy; 
+
+passport.use(new LocalStrategy( 
+  function(username, password, done) { 
+    Account.findOne({ username: username }, function (err, user) { 
+      if (err) { return done(err); } 
+      if (!user) { 
+        return done(null, false, { message: 'Incorrect username.' }); 
+      } 
+      if (!user.validPassword(password)) { 
+        return done(null, false, { message: 'Incorrect password.' }); 
+      } 
+      return done(null, user); 
+    }); 
+  } ))
 require('dotenv').config(); 
 const connectionString = process.env.MONGO_CON 
 mongoose = require('mongoose'); 
@@ -101,19 +115,5 @@ Oreo({flavour:"strawberry",  manufacturerlocation:'chennai', netweight:44.4});
  
 let reseed = true; 
 if (reseed) { recreateDB();} 
-
-passport.use(new LocalStrategy( 
-  function(username, password, done) { 
-    Account.findOne({ username: username }, function (err, user) { 
-      if (err) { return done(err); } 
-      if (!user) { 
-        return done(null, false, { message: 'Incorrect username.' }); 
-      } 
-      if (!user.validPassword(password)) { 
-        return done(null, false, { message: 'Incorrect password.' }); 
-      } 
-      return done(null, user); 
-    }); 
-  } ))
 
 module.exports = app;

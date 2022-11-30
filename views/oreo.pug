@@ -4,12 +4,18 @@ block content
   h1= title
 
   .container-fluid 
+    button.btn( class="btn-success ml-1", onclick=`dispatch(\"/create")` ) Go to Create Page
     .row 
       each bis,key in results
        - let destination = `dispatch(\"/update?id=${bis._id}\")`
         div(class="col-sm-2 oreobox" onclick=`buy(${keys})`) 
             = " " +bis.flavour +  " "+bis.manufacturerlocation+" "+bis.netweight
-        button.btn( class="btn-primary ml-1", onclick= destination) Update
+        button.btn( class="btn-primary ml-1", onclick= destination) Update 
+          
+        button.btn( class="btn-primary ml-1", onclick=`dispatch(\"/detail?id=${bis._id}\")` ) View details 
+            
+        button.btn( class="btn-primary ml-1", onclick=`dispatch(\"/delete?id=${bis._id}\")` ) Delete item
+        
 
   script.
     function buy(index){
